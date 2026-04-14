@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaz Creative — Commercial Photography &amp; Videography</title>
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #ffffff;
+      --surface:  #f5f5f5;
+      --text:     #333333;
+      --muted:    #888888;
+      --accent:   #222222;
+      --border:   #e0e0e0;
+      --font:     'Inter', 'Helvetica Neue', Arial, sans-serif;
+      --max-w:    1280px;
+      --nav-h:    64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block; width: 100%; height: 100%; object-fit: cover;
+      -webkit-user-drag: none;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── Hero ─────────────────────────────────────────────────── */
+    #hero {
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--accent);
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      opacity: 0.55;
+    }
+
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 300;
+      opacity: 0.75;
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 32px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1.5px solid rgba(255,255,255,0.8);
+      color: #fff;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: var(--accent);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.35);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { transform: scaleY(1); opacity: 0.4; }
+      50% { transform: scaleY(0.4); opacity: 1; }
+    }
+
+    /* ── Section Shared ───────────────────────────────────────── */
+    section { padding: 96px 40px; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    /* ── Gallery ──────────────────────────────────────────────── */
+    #gallery { background: var(--surface); }
+
+    .gallery-grid {
+      columns: 4;
+      column-gap: 8px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--border);
+      border-radius: 2px;
+      margin-bottom: 8px;
+    }
+
+    .gallery-item .thumb {
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item .thumb img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .gallery-item:hover .thumb { transform: scale(1.04); }
+
+    @media (max-width: 900px) { .gallery-grid { columns: 3; } }
+    @media (max-width: 600px) { .gallery-grid { columns: 2; } }
+
+    /* ── Clients strip ────────────────────────────────────────── */
+    #clients {
+      padding: 40px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .clients-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .clients-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .clients-logos {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .client-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #bbb;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .client-name:hover { color: var(--accent); }
+
+    /* ── Clients cloud (hidden) ───────────────────────────────── */
+    #clients { background: var(--bg); }
+
+    .clients-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .client-tag {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ddd;
+      cursor: default;
+      transition: color 0.2s, opacity 0.2s, transform 0.2s;
+      display: inline-block;
+      position: relative;
+    }
+
+    .client-tag:hover {
+      color: var(--accent);
+      transform: scale(1.5);
+      z-index: 10;
+    }
+
+    /* ── About ────────────────────────────────────────────────── */
+    #about {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-frame {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--surface);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .about-img-accent {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 60%;
+      aspect-ratio: 1;
+      background: var(--surface);
+      border: 12px solid var(--bg);
+      z-index: -1;
+      border-radius: 2px;
+    }
+
+    .about-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .about-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .about-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── Contact ──────────────────────────────────────────────── */
+    #contact {
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+    }
+
+    #contact .section-label { color: rgba(255,255,255,0.45); }
+    #contact .section-title { color: #fff; }
+
+    .contact-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      max-width: 460px;
+      margin: 0 auto 48px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .contact-btn {
+      padding: 13px 32px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .contact-btn.primary {
+      background: #fff;
+      color: var(--accent);
+    }
+
+    .contact-btn.primary:hover {
+      background: rgba(255,255,255,0.85);
+    }
+
+    .contact-btn.ghost {
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.85);
+    }
+
+    .contact-btn.ghost:hover {
+      border-color: rgba(255,255,255,0.8);
+      color: #fff;
+    }
+
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .social-row a {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.2s;
+    }
+
+    .social-row a:hover { color: #fff; }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 24px 40px;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Lightbox ─────────────────────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      cursor: zoom-out;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 2px;
+      cursor: default;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    #lightbox-close:hover { color: #fff; }
+
+    .lb-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 16px;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .lb-arrow:hover { color: #fff; }
+    .lb-prev { left: 16px; }
+    .lb-next { right: 16px; }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      section { padding: 72px 24px; }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-stats { gap: 24px; }
+
+      .clients-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+  <script src="images/manifest.js"></script>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo">Kaz Creative</div>
+    <ul class="nav-links">
+      <li><a href="#gallery">Productions</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Connect</a></li>
+      <li><a href="mailto:adam@adamkaz.com">adam@adamkaz.com</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-img">
+      <!-- Replace src with your hero image -->
+      <img src="images/hero.jpg" alt="Hero" onerror="this.style.display='none'" />
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Commercial Photography &amp; Videography</p>
+      <h1 class="hero-title">Kaz<br>Creative</h1>
+      <p class="hero-sub">One of the world's top-selling producers of commercial photography and videography.</p>
+      <a href="#gallery" class="btn">View Productions</a>
+    </div>
+    <div class="hero-scroll"></div>
+  </section>
+
+  <!-- Clients -->
+  <div id="clients">
+    <div class="clients-inner">
+      <span class="clients-label">Trusted By</span>
+      <div class="clients-logos">
+        <span class="client-name">Amazon</span>
+        <span class="client-name">Google</span>
+        <span class="client-name">Wal-Mart</span>
+        <span class="client-name">Fox News</span>
+        <span class="client-name">Getty Images</span>
+        <span class="client-name">iStock</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clients Cloud (hidden) -->
+  <!--
+  <section id="clients-cloud-section">
+    <div class="section-header">
+      <p class="section-label">Trusted By</p>
+      <h2 class="section-title">Our Clients</h2>
+    </div>
+    <div class="clients-cloud" id="clients-cloud"></div>
+  </section>
+  -->
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="section-header">
+      <p class="section-label">Selected Work</p>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-img-wrap">
+        <div class="about-img-frame">
+          <!-- Replace src with your portrait photo -->
+          <img src="images/about.jpg" alt="Adam Kaz"
+               onerror="this.parentNode.style.background='#e8e8e8'" />
+        </div>
+        <div class="about-img-accent"></div>
+      </div>
+      <div>
+        <p class="about-label">About</p>
+        <h2 class="about-title">Recognized as one of the world's top-selling producers of commercial photography and videography.</h2>
+        <p class="about-body">Work featured in Emmy-nominated programs, streaming series, and major political campaigns.</p>
+        <p class="about-body">Portraits used by national political figures and candidates.</p>
+        <p class="about-body">Broadcast networks and news organizations rely on our work for election coverage and breaking news.</p>
+        <p class="about-body">FAA Part 107 certified for commercial drone operations.</p>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">Fortune</div>
+            <div class="stat-label">500 Clients</div>
+          </div>
+          <div>
+            <div class="stat-num">Emmy</div>
+            <div class="stat-label">Nominated Work</div>
+          </div>
+          <div>
+            <div class="stat-num">Global</div>
+            <div class="stat-label">Distribution</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-header">
+      <p class="section-label">Connect</p>
+      <h2 class="section-title">Let's Create Together</h2>
+    </div>
+    <p class="contact-sub">Whether you're launching a campaign, building a brand, or elevating your visual storytelling, Kaz Creative offers the experience and creative vision to bring it to life.</p>
+    <div class="contact-links">
+      <a href="mailto:adam@adamkaz.com" class="contact-btn primary">adam@adamkaz.com</a>
+      <a href="https://www.instagram.com/adamkazmierski" target="_blank" class="contact-btn ghost">Instagram</a>
+      <a href="https://www.gettyimages.com/search/2/image-film?phrase=%27adamkaz%27&sort=best&family=creative&suppressfamilycorrection=true" target="_blank" class="contact-btn ghost">Stock Media</a>
+    </div>
+    <ul class="social-row">
+      <li><a href="https://www.instagram.com/adamkazmierski" target="_blank">Instagram</a></li>
+      <li><a href="https://www.gettyimages.com/search/2/image-film?phrase=%27adamkaz%27&sort=best&family=creative&suppressfamilycorrection=true" target="_blank">Getty Images</a></li>
+      <li><a href="https://www.istockphoto.com/portfolio/adamkaz?assettype=image&excludenudity=false&mediatype=photography&sort=best" target="_blank">iStock</a></li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Kaz Creative. All rights reserved.
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <button class="lb-arrow lb-prev" onclick="shiftLightbox(-1)">&#8592;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <button class="lb-arrow lb-next" onclick="shiftLightbox(1)">&#8594;</button>
+  </div>
+
+  <script>
+    // ── Lightbox ──────────────────────────────────────────────
+    let galleryImages = [];
+    let currentIndex = 0;
+
+    function openLightbox(src) {
+      currentIndex = galleryImages.indexOf(src);
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = src;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function shiftLightbox(dir) {
+      currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
+      document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+    }
+
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target.tagName === 'IMG' || e.target.closest('#lightbox')) e.preventDefault();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') shiftLightbox(1);
+      if (e.key === 'ArrowLeft')  shiftLightbox(-1);
+    });
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    // ── Gallery builder ───────────────────────────────────────
+    function buildGallery(images) {
+      images = [...images].sort(() => Math.random() - 0.5).slice(0, 12);
+      galleryImages = images.map(f => 'images/' + f);
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
+
+      images.forEach((file) => {
+        const src = 'images/' + file;
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.onclick = () => openLightbox(src);
+        item.innerHTML = `
+          <div class="thumb">
+            <img src="${src}" alt="" loading="lazy"
+                 onerror="this.parentNode.parentNode.style.display='none'" />
+          </div>`;
+        grid.appendChild(item);
+      });
+
+      // Animate new items
+      grid.querySelectorAll('.gallery-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        scrollObserver.observe(el);
+      });
+    }
+
+    // ── Clients cloud ─────────────────────────────────────────
+    const CLIENTS = [
+      // ↓↓ Paste your full list here, one per line ↓↓
+     "22 Squared",
+  "3M",
+  "AARP (American Association of Retired Persons)",
+  "AON",
+  "ASICS",
+  "AT&T Mobile Gaming",
+  "AWS (Amazon Web Services)",
+  "ActivPhy",
+  "Aetna",
+  "Amergis",
+  "American Express",
+  "Anheuser Busch",
+  "Australia Post",
+  "Avera",
+  "Avoya",
+  "BAM",
+  "BD Medical",
+  "Bank of America",
+  "Blue Cross Blue Shield",
+  "Boathouse",
+  "Brookfield",
+  "CDC (Centers for Disease Control)",
+  "CSRE",
+  "CU Direct",
+  "CVS",
+  "Campbell",
+  "Centene",
+  "Chewy",
+  "Chiesi",
+  "Chipotle",
+  "City National",
+  "College Board",
+  "Comm Bank",
+  "Deutsch",
+  "Digitas",
+  "Domino's",
+  "Elavon",
+  "Emergen-C",
+  "Entergy Texas",
+  "Erie Indemnity",
+  "F-Secure",
+  "FCB (Foote, Cone & Belding)",
+  "Fannie Mae",
+  "Fidelity",
+  "First Citizens Bank",
+  "Flagstar Bank",
+  "Foundry",
+  "Fresenius",
+  "Future",
+  "Gale",
+  "Geico",
+  "Global Payments",
+  "Google",
+  "Gourmet Drinks at Home",
+  "Grub Hub",
+  "Guardian",
+  "Guidewell",
+  "HBK",
+  "HCA (Hospital Corporation of America)",
+  "HSBC",
+  "Hawthorne",
+  "Health4Brands",
+  "Honeywell",
+  "Hotel Group",
+  "IG Index",
+  "Johnson & Johnson",
+  "Kaplan",
+  "KeyBank",
+  "Krusteaze",
+  "LA Care",
+  "LOL",
+  "Landesbank",
+  "Leaf",
+  "Life Extension",
+  "Luckyland",
+  "Macnica",
+  "Marriott",
+  "Mars",
+  "Mass Mutual",
+  "Merkley",
+  "Montage",
+  "NHS (National Health Service)",
+  "NIB",
+  "Nestle",
+  "New York Life",
+  "Nintendo",
+  "Noodles & Company",
+  "Norges",
+  "Nuance",
+  "OMRON",
+  "Ogilvy",
+  "OnPoint",
+  "Optum",
+  "Orgain",
+  "Oticon",
+  "Pet Armor",
+  "Primal Kitchen",
+  "Protective",
+  "Prudential",
+  "Ricoh",
+  "Rinnai",
+  "Robitussin",
+  "SHS",
+  "SRG",
+  "Saatchi",
+  "Santander",
+  "Schlumberger",
+  "Sempra",
+  "Shake Shack",
+  "Siemens",
+  "Skyroam",
+  "Slyroam",
+  "SoCal Gas",
+  "Synchrony",
+  "TBK",
+  "Tivity",
+  "Tombras",
+  "Tranzact",
+  "TriHealth",
+  "TrueCar",
+  "Trump Hotels",
+  "UHG (UnitedHealth Group)",
+  "US Bank",
+  "University Of Maryland",
+  "VGW",
+  "VSP (Vision Service Plan)",
+  "Vanguard",
+  "Verisk",
+  "Visa",
+  "Vision Care",
+  "Vonage",
+  "Wahl",
+  "Wells Fargo",
+  "Wheels Up",
+  "White Castle",
+  "Yelp",
+  "Zooplus"
+      // ↑↑ add more above this line ↑↑
+    ];
+
+    (function buildClients() {
+      const cloud = document.getElementById('clients-cloud');
+      if (!cloud) return;
+      const shuffled = [...CLIENTS].sort(() => Math.random() - 0.5);
+      shuffled.forEach(name => {
+        const tag = document.createElement('span');
+        tag.className = 'client-tag';
+        tag.textContent = name;
+        cloud.appendChild(tag);
+      });
+    })();
+
+    // Scroll proximity — opacity + color shift only, no layout-breaking scale
+    (function initProximity() {
+      let ticking = false;
+
+      function updateProximity() {
+        const midY = window.innerHeight / 2;
+        document.querySelectorAll('.client-tag').forEach(el => {
+          if (el.matches(':hover')) return;
+          const rect = el.getBoundingClientRect();
+          const elMid = rect.top + rect.height / 2;
+          const dist = Math.abs(elMid - midY);
+          const maxDist = window.innerHeight * 0.55;
+          const proximity = Math.max(0, 1 - dist / maxDist);
+          const opacity = 0.25 + proximity * 0.75;
+          const lightness = Math.round(85 - proximity * 72);
+          el.style.opacity = opacity.toFixed(2);
+          el.style.color = `hsl(0,0%,${lightness}%)`;
+        });
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(updateProximity); ticking = true; }
+      }, { passive: true });
+
+      updateProximity();
+    })();
+
+    // ── Scroll fade-in ─────────────────────────────────────────
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.about-inner, .section-header').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      scrollObserver.observe(el);
+    });
+
+    // ── Load manifest ──────────────────────────────────────────
+    if (window.GALLERY_IMAGES && window.GALLERY_IMAGES.length) {
+      const shuffled = [...window.GALLERY_IMAGES].sort(() => Math.random() - 0.5);
+
+      // Random hero image
+      document.querySelector('.hero-img img').src = 'images/' + shuffled[0];
+
+      // Random about image (different from hero)
+      const aboutImg = document.querySelector('.about-img-frame img');
+      if (aboutImg) aboutImg.src = 'images/' + (shuffled[1] || shuffled[0]);
+
+      buildGallery(window.GALLERY_IMAGES);
+    } else {
+      document.getElementById('gallery-grid').innerHTML =
+        '<p style="text-align:center;color:#aaa;padding:40px;grid-column:1/-1">Run <code>./generate-manifest.sh</code> to load your images.</p>';
+    }
+  </script>
+
+</body>
+</html>
