@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kaz Creative — Commercial Photography &amp; Videography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,7 +18,8 @@
       --muted:    #888888;
       --accent:   #222222;
       --border:   #e0e0e0;
-      --font:     'Inter', 'Helvetica Neue', Arial, sans-serif;
+      --font:     'Jost', 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
       --max-w:    1280px;
       --nav-h:    64px;
     }
@@ -56,10 +60,10 @@
     }
 
     .nav-logo {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
       color: var(--accent);
     }
 
@@ -119,10 +123,11 @@
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+      font-family: var(--font-serif);
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
       margin-bottom: 20px;
     }
 
@@ -198,10 +203,11 @@
     }
 
     .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 700;
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
       color: var(--accent);
-      letter-spacing: -0.02em;
+      letter-spacing: 0.02em;
     }
 
     /* ── Gallery ──────────────────────────────────────────────── */
@@ -360,11 +366,12 @@
     }
 
     .about-title {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 700;
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
       color: var(--accent);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
       margin-bottom: 24px;
     }
 
@@ -407,7 +414,7 @@
     }
 
     #contact .section-label { color: rgba(255,255,255,0.45); }
-    #contact .section-title { color: #fff; }
+    #contact .section-title { color: #fff; font-family: var(--font-serif); }
 
     .contact-sub {
       color: rgba(255,255,255,0.6);
