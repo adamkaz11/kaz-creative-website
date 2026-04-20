@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://www.istockphoto.com/portfolio/adamkaz?assettype=image&excludenudity=false&phraseprocessing=excludenaturallanguage&mediatype=photography&sort=newest",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
