@@ -5,6 +5,12 @@
       "has": [{ "type": "host", "value": "new.adamkaz.com" }],
       "destination": "https://www.istockphoto.com/portfolio/adamkaz?assettype=image&excludenudity=false&phraseprocessing=excludenaturallanguage&mediatype=photography&sort=newest",
       "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "video.adamkaz.com" }],
+      "destination": "https://www.istockphoto.com/portfolio/adamkaz?assettype=film&phraseprocessing=excludenaturallanguage&sort=best",
+      "permanent": true
     }
   ],
   "headers": [
