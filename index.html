@@ -657,98 +657,12 @@
 
       .clients-inner { flex-direction: column; align-items: flex-start; }
     }
-
-    /* ── Temporary maintenance notice ─────────────────────────── */
-    #maintenance {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      background: var(--accent);
-      color: #fff;
-      padding: 40px 24px;
-    }
-
-    .maint-logo {
-      font-family: var(--font-serif);
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      margin-bottom: 40px;
-    }
-
-    .maint-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      opacity: 0.55;
-      margin-bottom: 18px;
-    }
-
-    .maint-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    .maint-sub {
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
-      font-weight: 300;
-      opacity: 0.7;
-      max-width: 460px;
-      margin: 0 auto 36px;
-    }
-
-    .maint-contact {
-      display: inline-block;
-      padding: 13px 32px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1.5px solid rgba(255,255,255,0.5);
-      border-radius: 2px;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .maint-contact:hover { background: #fff; color: var(--accent); }
-
-    .maint-footer {
-      margin-top: 56px;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.3);
-    }
   </style>
   <script src="images/manifest.js"></script>
 </head>
 <body>
 
-  <!-- ══ TEMPORARY DOWN NOTICE — remove this section to restore the site ══ -->
-  <section id="maintenance">
-    <div>
-      <div class="maint-logo">Kaz Creative</div>
-      <p class="maint-eyebrow">Temporarily Unavailable</p>
-      <h1 class="maint-title">We'll Be<br>Right Back</h1>
-      <p class="maint-sub">Our site is down for maintenance while we make some updates. Please check back soon.</p>
-      <a href="mailto:adam@adamkaz.com" class="maint-contact">adam@adamkaz.com</a>
-      <p class="maint-footer">&copy; 2026 Kaz Creative. All rights reserved.</p>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════════════════════
-       SITE CONTENT TEMPORARILY DISABLED
-       Everything below (nav, hero, clients, gallery, about, contact, footer,
-       lightbox, and scripts) is commented out, not deleted. To bring the site
-       back: delete the #maintenance section above, then remove the opening
-       comment marker below and the closing marker just before </body>.
-       ══════════════════════════════════════════════════════════════════════ -->
-  <!--
-
-  [ Nav ]
+  <!-- Nav -->
   <nav>
     <div class="nav-logo">Kaz Creative</div>
     <ul class="nav-links">
@@ -759,9 +673,10 @@
     </ul>
   </nav>
 
-  [ Hero ]
+  <!-- Hero -->
   <section id="hero">
     <div class="hero-img">
+      <!-- Replace src with your hero image -->
       <img src="images/hero.jpg" alt="Hero" onerror="this.style.display='none'" />
     </div>
     <div class="hero-content">
@@ -773,7 +688,7 @@
     <div class="hero-scroll"></div>
   </section>
 
-  [ Clients ]
+  <!-- Clients -->
   <div id="clients">
     <div class="clients-inner">
       <span class="clients-label">Trusted By</span>
@@ -788,7 +703,8 @@
     </div>
   </div>
 
-  [ Clients Cloud (hidden — was already disabled before the site went down) ]
+  <!-- Clients Cloud (hidden) -->
+  <!--
   <section id="clients-cloud-section">
     <div class="section-header">
       <p class="section-label">Trusted By</p>
@@ -796,8 +712,9 @@
     </div>
     <div class="clients-cloud" id="clients-cloud"></div>
   </section>
+  -->
 
-  [ Gallery ]
+  <!-- Gallery -->
   <section id="gallery">
     <div class="section-header">
       <p class="section-label">Selected Work</p>
@@ -805,11 +722,12 @@
     <div class="gallery-grid" id="gallery-grid"></div>
   </section>
 
-  [ About ]
+  <!-- About -->
   <section id="about">
     <div class="about-inner">
       <div class="about-img-wrap">
         <div class="about-img-frame">
+          <!-- Replace src with your portrait photo -->
           <img src="images/about.jpg" alt="Adam Kaz"
                onerror="this.parentNode.style.background='#e8e8e8'" />
         </div>
@@ -840,7 +758,7 @@
     </div>
   </section>
 
-  [ Contact ]
+  <!-- Contact -->
   <section id="contact">
     <div class="section-header">
       <p class="section-label">Connect</p>
@@ -859,12 +777,12 @@
     </ul>
   </section>
 
-  [ Footer ]
+  <!-- Footer -->
   <footer>
     &copy; 2026 Kaz Creative. All rights reserved. All images copyright Kaz Creative. Unauthorized use prohibited.
   </footer>
 
-  [ Lightbox ]
+  <!-- Lightbox -->
   <div id="lightbox">
     <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
     <button class="lb-arrow lb-prev" onclick="shiftLightbox(-1)">&#8592;</button>
@@ -1155,9 +1073,6 @@
         '<p style="text-align:center;color:#aaa;padding:40px;grid-column:1/-1">Run <code>./generate-manifest.sh</code> to load your images.</p>';
     }
   </script>
-
-  -->
-  <!-- ══ END OF DISABLED SITE CONTENT ══ -->
 
 </body>
 </html>
